@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../../core/utils/images.dart';
+import 'restaurant_detail_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,15 +19,13 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> startAnimation() async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    await Future.delayed(const Duration(seconds: 1));
-
-    await Future.delayed(const Duration(seconds: 2));
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => const HomeScreen()),
-    // );
+    await Future.delayed(const Duration(seconds: 3));
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const RestaurantDetailScreen()),
+      );
+    }
     FlutterNativeSplash.remove();
   }
 
@@ -37,16 +36,9 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(ImagesConstant.appLogo, width: 200, height: 200),
-            const SizedBox(height: 30),
-            const Text(
-              'Weather app',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Image.asset(ImagesConstant.appLogo, width: 250, height: 312),
+            const SizedBox(height: 20),
+            const CircularProgressIndicator(color: Colors.white),
           ],
         ),
       ),
